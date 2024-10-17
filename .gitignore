@@ -1,0 +1,23 @@
+# logs, reports and documents
+*.html
+*.xlsx
+*.csv
+*.xml
+*.arff
+*.txt
+*.zip
+*.test
+*.data
+AIML421_A3_2024.pdf
+Logs/
+Log/
+logs/
+
+# Python Environment
+.venv/
+.vscode/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
