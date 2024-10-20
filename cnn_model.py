@@ -21,7 +21,7 @@ transform = transforms.Compose([
 ])
 
 # Load dataset 
-custom_dataset = ImageFolder(root='data/train_data', transform=transform)
+custom_dataset = ImageFolder(root='data/original/train_data', transform=transform)
 
 # Split the dataset into training and test sets
 train_size = int(0.8 * len(custom_dataset))
@@ -30,7 +30,7 @@ train_dataset, test_dataset = torch.utils.data.random_split(custom_dataset, [tra
 
 # Create DataLoader for training and test sets
 batch_size = 32
-train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, num_workers=2)
+train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
 test_loader = DataLoader(test_dataset, batch_size = batch_size, shuffle=False)
 
 # Define the CNN model
@@ -98,7 +98,6 @@ images, labels = next(dataiter)
 
 # Show images
 imshow(torchvision.utils.make_grid(images))
-print(' '.join(f'{train_dataset.classes[labels[j]]:5s}' for j in range(4)))
 
 # Load the saved model and make predictions
 model.load_state_dict(torch.load('cnn_model.pth'))
@@ -107,4 +106,5 @@ model.eval()
 outputs = model(images.to(device))
 _, predicted = torch.max(outputs, 1)
 
-print('Predicted: ', ' '.join(f'{train_dataset.classes[predicted[j]]:5s}' for j in range(4)))
+print('Predicted: ', ' '.join(f'{custom_dataset.classes[predicted[j]]:5s}' for j in range(len(outputs))))
+
