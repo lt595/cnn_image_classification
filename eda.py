@@ -8,6 +8,8 @@ from torchvision.datasets import ImageFolder
 from torch.utils.data import DataLoader
 from collections import Counter
 import seaborn as sns
+from sklearn.decomposition import PCA
+from sklearn.manifold import TSNE
 
 # Set the path to your dataset
 data_dir = 'data/original/train_data'
